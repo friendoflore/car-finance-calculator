@@ -1,0 +1,127 @@
+<!-- List of entered data -->
+{% if data %}
+	<div class="row">
+		<div class="col-xs-7 col-sm-6">
+			<h4>Data</h4>
+			<table class="table .table-bordered table-striped dataset">
+				<tr>
+					<td><strong>Miles per day</strong>
+					<td>{{ data.mpd }} mi
+				<tr>
+					<td><strong>Cost of gas</strong>
+					<td>${{ data.cog }}
+				<tr>
+					<td><strong>Interest rate</strong>
+					<td>{{ data.ir }}%
+				<tr>
+					<td><strong>Loan period</strong>
+					<td>{{ data.lp }} mo
+			</table>
+		</div>
+	</div>
+{% endif %}
+<!-- End list of entered data -->
+
+<!-- List all car data. If loan stats have been provided, render those data as well. --> 
+<h4>Cars</h4>
+{% if cars|length > 0 %}
+	{% for x in cars %}
+
+		<!-- Put green border around cheapest (first) car -->
+		{% if loop.index == 1 %}
+			<div class="cheapest_car_container">
+		{% endif %}
+
+		<!-- Car row -->
+		<div class="row">
+
+			<!-- Car information -->
+			<div class="col-xs-5">
+				<table class="table">
+					<tr>
+						<th>{{ x.name }}
+					<tr>
+						<td>Amount financing: ${{ x.price }} <br />
+						{% if data %}
+							<span class="true_cost_stmt">(Total cost of loan: <strong>${{ '%0.0f' | format(x.true_cost) }}</strong>)</span>
+						{% endif %}
+					<tr>
+						<td>MPG: <strong>{{ x.mpg }}</strong> | 
+						<span class="gallons_per_month_stmt">
+							Gal/mo:
+							{% if data %}
+								<strong>{{ '%0.2f' | format(x.gallons_per_month) }} gal</strong>
+							{% endif %}
+					</span>
+				</table>
+
+			</div>
+
+			<!-- Car subtotals -->
+			<div class="col-xs-offset-0 col-sm-offset-1 col-xs-5 col-sm-4">
+				{% if data %}
+
+					<table class="table table-condensed">
+						<tr>
+							<td>Payment:
+							<td>${{ '%0.2f' | format(x.monthly_payment) }}
+						<tr>
+							<td>Gas cost:
+							<td>${{ '%0.2f' | format(x.monthly_gas) }}
+						<tr>
+							<th>Total:
+							<th>${{ '%0.2f' | format(x.monthly_cost) }}
+					</table>
+
+				{% endif %}
+			</div>
+
+			<!-- Car total -->
+			<div class="leader_table col-xs-2">
+				<div class="total_inner_content">
+					{% if data %}
+						{% if loop.index == 1 %}
+							<span class="leader_cost"><strong>${{ '%0.2f' | format(x.monthly_cost) }}</strong></span><br />
+						{% else %} 
+						<strong>${{ '%0.2f' | format(x.monthly_cost) }}</strong>
+
+							<span class="off_leader leader_comp">+${{ '%0.2f' | format(x.off_leader|abs) }}
+						{% endif %}
+					{% endif %}
+					<form id="deleteCarForm{{ loop.index }}" method="put" action="javascript:deleteCar({{ loop.index }})">
+						<input type="text" name="car_key" value="{{ x.key.urlsafe() }}" hidden>
+						<button class="btn btn-sm btn-link">Delete</button>
+					</form>	
+				</div>
+			</div>
+			<!-- End car total -->
+
+			<!-- End green box around chepest (first) car -->
+			{% if loop.index == 1 %}	
+				</div>
+			{% endif %}
+
+		</div>
+		<!-- End of car row -->
+
+		<hr>
+	{% endfor %}
+
+	{% if cars[0].monthly_gas is not defined %}
+		<div class="instruct_message">
+		 	<h4>Now add your loan data to see stats!</h4>
+		</div>
+	{% endif %}
+<!-- End list of car data -->
+
+{% else %}
+	<div class="instruct_message">
+		<h4>Add a car to get started!</h4>
+	</div>
+{% endif %}
+
+{% if cars|length == 1 %}
+	<div class="instruct_message">
+		<h4>Add another car to compare!</h4>
+	</div>
+{% endif %}

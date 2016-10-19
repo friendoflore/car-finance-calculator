@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<title>Friend of Data - Car Cost Calculator</title>
+		<!-- jQuery minified JS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" async></script>
+
+		<!-- Bootstrap minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Bootstrap minified theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Bootstrap minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous" async></script>
+
+		<!-- Firebase Library -->
+		<script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js" async></script>
+
+		<!-- FirebaseUI Libraries --> 
+		<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-app.js" async></script>
+		<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-auth.js" async></script>
+		<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-database.js" async></script>
+		<!-- Leave out Storage -->
+		<!-- <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-storage.js"></script> -->
+
+		<!-- Remove the CDN version in order to remove Account Chooser from the application. 
+				 "firebase-ui-auth.js" disables Account Chooser using the accountChooserEnabled attribute -->
+		<!-- <script src="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.js"></script> -->
+		<script src="{{ url_for('static', filename='js/firebase-ui-auth.js') }}"></script>
+
+		<!-- FirebaseUI CSS -->
+		<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css" />
+		
+		<!-- Local CSS files -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Google Analytics -->
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-67366124-3', 'auto');
+		  ga('send', 'pageview');
+		</script>
+	</head>
+	<body>
+		<div class="container-fluid">
+
+			<!-- Page header -->
+			<div class="row">
+				{% include 'header.html' %}
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					Compare car prices by monthly estimated cost. Enter cars below to compare them.
+					<hr>
+				</div>
+			</div>
+
+			<!-- Login box (hidden) -->
+			<div id="firebaseui-auth-container"></div>
+
+			<!-- Page content -->
+			<div class="row">
+
+				<!-- Left form template -->
+				<div class="col-xs-12 col-sm-4">
+					{% include 'form.html' %}
+				</div>
+
+				<!-- Right page data template -->
+				<div id="car_info" class="col-xs-12 col-sm-8">
+					{% if cars is defined %}
+						{% include 'car_data.html' %}
+					{% endif %}
+				</div>
+
+			</div>
+		</div>
+		<footer>
+			<div class="row">
+				<div class="col-xs-offset-3 col-md-offset-4 col-xs-6">
+
+					<p class="copyright">
+						Licensed under 
+						<u>
+							<a target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/legalcode">
+								Creative Common International Public License
+							</a>
+						</u> 
+						by Friend of Data.
+					</p>
+
+				</div>
+		</footer>
+		<!-- Local JS files -->
+		<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}" async></script>
+	</body>
+</html>

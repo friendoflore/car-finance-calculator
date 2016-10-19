@@ -1,0 +1,65 @@
+.leader_table {
+	font-size: 18;
+}
+
+.leader_comp {
+	font-size: 14;
+}
+
+.leader {
+	color: #99cc00;
+}
+
+.off_leader {
+	color: #cc0000;
+}
+
+.total_inner_content {
+	margin-top: 30%;
+}
+
+td {
+	font-size: 14;
+}
+
+.instruct_message {
+	text-align: center;
+}
+
+.log-in_box {
+	margin-top: 1em;
+}
+
+#log-out_btn {
+	float: right;
+}
+
+#display-name {
+	margin-right: 0.6em;
+	font-size: 16;
+	text-align: right;
+	float: right;
+}
+
+#firebase-auth-container {
+	position: absolute;
+
+}
+
+.true_cost_stmt {
+	font-size: 12;
+}
+
+
+.gallons_per_month_stmt {
+	font-size: 14;
+}
+
+.cheapest_car_container {
+	border: 1px solid green;
+	padding-right: 4em;
+}
+
+.copyright {
+	font-size: 12;
+}

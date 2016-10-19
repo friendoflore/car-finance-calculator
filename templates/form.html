@@ -1,0 +1,50 @@
+<div class="form-group">
+
+	<!-- Add car form -->
+	<label for="add_car">Add Car</label>
+	<form name="addCar" id="carForm" method="post" action="javascript:addCar()">
+		<label for="name" hidden>Car name:</label>
+		<input class="form-control" type="text" name="name" placeholder="Make, Model" maxlength="40" required><br />
+		<label for="price" hidden>Price:</label>
+		<div class="input-group">
+			<span class="input-group-addon">$</span>
+			<input class="form-control" type="number" step="any" name="price" placeholder="Price" min="0" max="10000000000000" required>
+		</div>
+		<br />
+		<label for="mpg" hidden>Miles per gallon:</label>
+		<div class="input-group">
+			<input class="form-control" type="number" step="any" name="mpg" placeholder="MPG" min="0.001" max="10000000000" required>
+			<span class="input-group-addon">mpg</span>
+		</div>
+		<br />
+		<input class="form-control btn btn-primary" type="submit" value="Add vehicle">
+	</form>
+
+	<!-- Add data form -->
+	<label for="add_data">Add Info</label>
+	<form name="add_data" id="dataForm" method="post" action="javascript:addData()">
+		<label for="miles_per_day">Miles driven per day:</label>
+		<div class="input-group">
+			<input class="form-control" type="number" step="any" name="miles_per_day" value="100" min="0" max="1000000000" required><br />
+			<span class="input-group-addon">mi</span>
+		</div>
+		<label for="cost_of_gas">Cost of gasoline:</label>
+		<div class="input-group">
+			<span class="input-group-addon">$</span>
+			<input class="form-control" type="number" step="any" name="cost_of_gas" value="2.50" min="0" max="1000000000" required><br />
+		</div> 
+		<label for="interest_rate">Interest rate:</label>
+		<div class="input-group">
+			<input class="form-control" type="number" step="any" name="interest_rate" value="7" min="0" max="100" required><br />
+			<span class="input-group-addon">%</span>
+		</div>
+		<label for="loan_period">Loan period:</label>
+		<div class="input-group">
+			<input class="form-control" type="number" step="any" name="loan_period" value="60" min="1" max="1000" required>
+			<span class="input-group-addon">mo</span>
+		</div>
+		<br />
+		<input class="form-control btn btn-primary" type="submit" value="Add data">
+	</form>
+
+</div>
